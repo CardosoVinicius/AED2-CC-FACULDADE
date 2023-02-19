@@ -1,0 +1,54 @@
+/******************************************************************************
+
+                          Vinicius Cardoso De Souza
+
+*******************************************************************************/
+
+#include <stdio.h>
+#define ALUNO 5
+#define MEDIA(x, y) (x+y)/2
+
+struct Aluno{
+    int matricula;
+    float n1;
+    float n2;
+    float media;
+};
+
+float leNota(){
+    float temp;
+      scanf("%f", &temp);
+        while(temp < 0 || temp > 10){
+     printf("Digite uma nota de zero a dez: ");
+        scanf("%f", &temp);
+    }
+    return temp;
+}
+
+int main()
+{
+    struct Aluno vet[ALUNO];
+    float soma = 0.0f;
+    for(int i = 0; i < ALUNO; i++){
+        printf("\n-----------------------------------------");
+        printf("\nMatricula: ");
+        scanf("%d", &vet[i].matricula);
+        printf("\nNota n1: ");
+        vet[i].n1 = leNota();
+        printf("\nNota n2: ");
+        vet[i].n2 = leNota();
+        vet[i].media = MEDIA(vet[i].n1, vet[i].n2);
+        soma = soma + vet[i].media;
+    }
+    for(int i = 0; i < ALUNO; i++){
+        printf("\n\n||||||||||||| ALUNO %d ||||||||||||", vet[i].matricula);
+        printf("\nNota da n1: %f", vet[i].n1);
+        printf("\nNota da n2: %f", vet[i].n2);
+        printf("\nMedia: %f %s", vet[i].media, (vet[i].media >= soma/ALUNO) ? "(ACIMA DA MEDIA)" : "(ABAIXO DA MEDIA)");
+    }
+    printf("\n\n\nRELATÓRIO GERAL: ");
+    printf("\nQuantidade de alunos na sala: %d", ALUNO);
+    printf("\nMedia geral da sala: %f", soma/ALUNO);
+
+    return 0;
+}
